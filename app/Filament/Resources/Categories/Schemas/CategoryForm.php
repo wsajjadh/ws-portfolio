@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Filament\Resources\Categories\Schemas;
+
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Schema;
+
+class CategoryForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Section::make('Category Details')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Textarea::make('description')
+                            ->maxLength(65535),
+                        Toggle::make('active')
+                            ->default(true),
+                    ]),
+            ]);
+    }
+}

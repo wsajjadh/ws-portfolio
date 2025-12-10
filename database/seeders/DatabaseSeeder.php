@@ -23,5 +23,21 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Administrator',
+                'password' => 'password',
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Seed categories, tags, and settings
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+            SettingsSeeder::class,
+        ]);
     }
 }
